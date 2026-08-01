@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Netflix Smart TV - FINAL</title>
+
+<style>
+* { box-sizing:border-box; }
+body { margin:0; background:#000; color:#fff; font-family:Arial,sans-serif; overflow-x:hidden; }
+
+html{
+  scroll-behavior:auto;
+}
+
+/* HEADER */
+.header {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:320px;
+  background-color:#000;
+  background-size:cover;
+  background-position:center;
+  display:flex;
+  align-items:center;
+  padding:20px;
+  z-index:9999;
+  overflow:hidden;
+}
+
+
+.header::before {
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(to right, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.9) 40%, transparent 100%),
+    linear-gradient(to bottom, transparent 20%, #000 100%);
+}
+
+.header-info {
+  position:relative;
+  z-index:2;
+  max-width:470px;
+  opacity:0;
+  transition:0.3s;
+}
+
+.header-info.visible { opacity:1; }
+
+.header h1 img {
+  max-width:300px;
+  max-height:80px;
+}
+
+/* META Y OVERVIEW */
+.details { 
+  font-size:15px; 
+  font-weight:bold; 
+  margin:8px 0;
+}
+
+.overview { 
+  font-size:12px; 
+  line-height:1.4; 
+  max-width:450px;
+}
+
+/* FILAS */
+.content {
+  padding:20px;
+  margin-top:320px;
+}
+
+
+
+.movie-row {
+  display:grid;
+  grid-template-columns:repeat(8,104px);
+  gap:12px;
+  margin-top:15px;
+
+  /* ACELERACIÓN */
+  content-visibility:auto;
+  contain-intrinsic-size:160px;
+}
+
+/* GPU ACCELERATION */
+.movie img,
+.header,
+.movie {
+  will-change: transform;
+  transform: translateZ(0);
+}
+
+
+
+.movie-row.hidden { display:none; }
+
+/* PELIS */
+.movie {
+  cursor:pointer;
+  outline:none;
+}
+.movie img {
+  width:105px;
+  height:160px;
+  object-fit:cover;
+}
+
+.movie:hover,
+
+
+img{
+  loading:lazy;
+}
+.movie.selected img {
+  border:3px solid #E50914;
+}
+
+/* BUSCADOR */
+.search-container { 
+  position:fixed; 
+  top:20px; 
+  right:30px; 
+  display:flex; 
+  align-items:center; 
+  gap:10px; 
+  z-index:10000; 
+}
+
+.search-button { 
+  background:none; 
+  border:none; 
+  cursor:pointer; 
+  display:flex; 
+  align-items:center; 
+  justify-content:center; 
+  outline:none; 
+  transition: transform .2s; 
+}
+
+.search-button svg { 
+  width:24px; 
+  height:24px; 
+  fill:white; 
+}
+
+.search-button:hover { 
+  transform: scale(1.2); 
+}
+
+.search-input {
+  width:0; 
+  padding:8px 12px; 
+  border-radius:20px; 
+  border:1px solid rgba(255,255,255,0.5);
+  background:rgba(0,0,0,0.5); 
+  color:#fff; 
+  outline:none; 
+  opacity:0; 
+  transition:width 0.2s, opacity 0.2s, transform 0.2s;
+}
+
+.search-input.active, 
+.search-input:focus { 
+  width:220px; 
+  opacity:1; 
+  transform: scale(1.05); 
+}
+</style>
+</head>
+
+<body>
+
+<!-- BUSCADOR -->
+<div class="search-container">
+  <button class="search-button" id="search-button">
+    <svg viewBox="0 0 24 24">
+      <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0016 9.5 6.5 6.5 0 109.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C8.01 14 6 11.99 6 9.5S8.01 5 10.5 5 15 7.01 15 9.5 12.99 14 10.5 14z"></path>
+    </svg>
+  </button>
+  <input type="text" id="search" class="search-input" placeholder="Buscar...">
+</div>
+
+<!-- HEADER -->
+<div class="header" id="header">
+  <div class="header-info" id="info">
+    <h1 id="title"></h1>
+    <div id="meta" class="details"></div>
+    <p id="overview" class="overview"></p>
+  </div>
+</div>
+
+<!-- CONTENIDO -->
+<div class="content">
+
+
+
+<!--  INICIO FILA -->
+
+
+<div class="movie-row">
+
+
+
+
+
+
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/egCzKuTUOsU"
+target="_blank" rel="noopener noreferrer"
+data-title="Happy Feet 2 (2011) Animación, Comedia y Familia"
+data-logo="https://image.tmdb.org/t/p/w780/62TEEvErpsO39cgP0quRCzkwiql.png"
+data-banner="https://image.tmdb.org/t/p/original/icAAqHhVXuSQlKNvUfL257AFTwN.jpg"
+data-meta="2011 | 1h 39m | Animación, Comedia y Familia | HD | +7"
+data-overview="El pingüino Mumble tiene un problema: su hijo Erik, que se resiste a bailar, se encuentra con El poderoso Sven, un pingüino que puede volar. Las cosas se ponen feas para Mumble cuando el mundo se ve sacudido por fuerzas poderosas, forzándole a reunir a los países de los pingüinos y sus aliados para intentar resolver los problemas.">
+<img src="https://image.tmdb.org/t/p/w780/kCGdzG0XUij3BqIsygdNEAuFM1Z.jpg">
+</a>
+
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/peAT9Um87mc"
+target="_blank" rel="noopener noreferrer"
+data-title="Lluvia de albóndigas (2009) Animación, Comedia y Familia"
+data-logo="https://image.tmdb.org/t/p/w780/sCLx8yOLIuiUImD7K5HEz3bLFIV.png"
+data-banner="https://image.tmdb.org/t/p/original/cslS1Er64IP0t5VKCqQh435NeFd.jpg"
+data-meta="2009 | 1h 26m | Animación, Comedia y Familia | FHD | 0+"
+data-overview="Adaptación del libro homónimo de Judi Barrett, una parodia animada de los films de catástrofes, como Armageddon, Twister o Independence Day. El protagonista es Flint, un joven científico que sueña con inventar algo que le mejore la vida a todos sus vecinos. Tras muchos intentos consigue crear algo que realmente funciona: una máquina que hace caer comida del cielo.">
+<img src="https://image.tmdb.org/t/p/w780/cMs3pxK1xjse7fJooGZsWAlrk6Q.jpg">
+</a>
+
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/ZoP_MR4Uo9o"
+target="_blank" rel="noopener noreferrer"
+data-title="Lluvia de albóndigas 2 (2013) Animación, Familia y Comedia"
+data-logo="https://image.tmdb.org/t/p/w780/okbyVrAyfpS3Q0aDt4GTp4arzMN.png"
+data-banner="https://image.tmdb.org/t/p/original/vWriOBVlgW0XWdgbOiijhyLW7B8.jpg"
+data-meta="2013 | 1h 35m | Animación, Familia y Comedia | HD | 0+"
+data-overview="Flint ya ha conseguido lo que perseguía desde siempre: ser un reconocido investigador admirado por todos. Después de crear su máquina que creaba comida a partir de agua ('Lluvia de albóndigas 1'), el director de la prestigiosa compañía The Live Corp Company y gran investigador, Chester V, ha contratado a Flint para que forme parte de su equipo, formado por los mejores investigadores del mundo. El protagonista está lleno de alegría, pero muy a su pesar descubrirá que el invento que creó está dando resultados inesperados y altamente peligrosos. A partir de los restos de comida que caían del cielo se han creado bestias mutantes de todo tipo (cocodrilos, arañas, chimpacés…) que ponen en peligro la seguridad de los humanos.">
+<img src="https://image.tmdb.org/t/p/w780/wLnAUHnQXacLZs1PJnkq0ns0u2y.jpg">
+</a>
+
+
+
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/ICMzhRYK1O4"
+target="_blank" rel="noopener noreferrer"
+data-title="Super Mario Galaxy la película (2026) Familia, Comedia, Aventura, Fantasía y Animación"
+data-logo="https://image.tmdb.org/t/p/w780/6iBGJAaGKJ0xDhsnowxKDROLqyK.png"
+data-banner="https://image.tmdb.org/t/p/original/kxQiIJ4gVcD3K6o14MJ72p5yRcE.jpg"
+data-meta="2026 | 1h 38m | Comedia, Aventura, Fantasía y Animación | 4K | 7+"
+data-overview="Secuela de 'Super Mario Bros: La película', basada en la saga 'Mario Galaxy'. Los hermanos Mario y Luigi y la princesa Peach emprenden una aventura hasta los confines del espacio y a través de la galaxia.">
+<img src="https://image.tmdb.org/t/p/w780/4Js0gYWxuvTN6b8iAaSF1cSQzBs.jpg">
+</a>
+
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/wLXXMIISAZ0"
+target="_blank" rel="noopener noreferrer"
+data-title="Happy Feet: Rompiendo el hielo (2006) Animación, Comedia y Familia"
+data-logo="https://image.tmdb.org/t/p/w780/j0kEyRodQe2FyJYcImaYZK9SFr3.png"
+data-banner="https://image.tmdb.org/t/p/original/pxsR974ez8bQx0GDixxiKr7pk1o.jpg"
+data-meta="2006 | 1h 48m | Animación, Comedia y Familia | FHD | 7+"
+data-overview="Mumble, un joven pingüino emperador, vive en la Antártida. Como otros animales de su especie, él necesita saber cantar para atraer a una pareja, pero tiene una voz horrible. En su lugar, Mumble debe expresarse, y atraer a las hembras a través de su increíble talento para bailar claqué.">
+<img src="https://image.tmdb.org/t/p/w780/r6BZdJ8EgT956qyJnPksFuiZ4Xb.jpg">
+</a>
+
+
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/Nxf6Il0iObg"
+target="_blank" rel="noopener noreferrer"
+data-title="El bebé jefazo (2017) Animación, Comedia y Familia"
+data-logo="https://image.tmdb.org/t/p/w780/3E6u70GCV2Ry4zcLOyomQhVqSBS.png"
+data-banner="https://image.tmdb.org/t/p/original/gkZOUZpM4F6hceQ8xE6TEdrGJgT.jpg"
+data-meta="2017 | 1h 37m | Animación, Comedia y Familia | HD | 0+"
+data-overview="La llegada de un hermanito trastoca por completo la idílica vida del pequeño Tim, hasta entonces hijo único de 7 años y el ojito derecho de sus padres. Su nuevo hermano es un peculiar bebé, que viste traje y corbata y lleva maletín. Tim comienza a sospechar de él, hasta que descubre que puede hablar.">
+<img src="https://image.tmdb.org/t/p/w780/dPiXM1aFbJ9XJGPyf5ZULmEjzkR.jpg">
+</a>
+
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/_mcnxzsvnMw"
+target="_blank" rel="noopener noreferrer"
+data-title="GOAT: Como cabras (2026) Animación, Comedia y Familia"
+data-logo="https://image.tmdb.org/t/p/w780/zQbdlH52zvg4ONxOrMQ3S32EDGe.png"
+data-banner="https://image.tmdb.org/t/p/original/ucDMmWAYOiBhd6cZCDWVK9DIIQ4.jpg"
+data-meta="2026 | 1h 40m | Animación, Comedia y Familia | FHD | 0+"
+data-overview="Will es una pequeña cabra con grandes sueños que recibe una oportunidad única en la vida para unirse a los profesionales y jugar al rugebol, un deporte de alta intensidad, mixto y de contacto total dominado por los animales más rápidos y feroces del mundo. A los nuevos compañeros de equipo de Will no les entusiasma tener a una cabrita en su plantilla, pero Will está decidido a revolucionar el deporte y demostrar de una vez por todas que «¡los pequeños saben jugar!».">
+<img src="https://image.tmdb.org/t/p/w780/l8Y8o3RpFg54gmQQ8GVaxVroFmY.jpg">
+</a>
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/LtWqLJHCCcw"
+target="_blank" rel="noopener noreferrer"
+data-title="Hoppers (2026) Animación, Aventura, Comedia, Familia y Ciencia ficción"
+data-logo="https://image.tmdb.org/t/p/w780/gsD5xIliP0YFfjXETFInVvNuIVL.png"
+data-banner="https://image.tmdb.org/t/p/original/u53UYu5XG2hNgWGvs3xGhAVzypl.jpg"
+data-meta="2026 | 1h 45m | Aventura, Comedia, Ciencia ficción | 4K | 0+"
+data-overview="Una amante de los animales aprovecha la oportunidad de utilizar una tecnología que coloca su conciencia en un castor robótico, descubriendo misterios dentro del mundo animal que van más allá de lo que podría haber imaginado.">
+<img src="https://image.tmdb.org/t/p/w780/4Z0E1W7YvQ0aVtgj7KKtktb9ukd.jpg">
+</a>
+
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/-lKj533jWvM"
+target="_blank" rel="noopener noreferrer"
+data-title="Robot salvaje (2024) Familia,Animación,Ciencia ficción y Aventura"
+data-logo="https://image.tmdb.org/t/p/w780/cBgbMZxdmcImD4Al8sq0pffOQ4T.png"
+data-banner="https://image.tmdb.org/t/p/original/eK8HiCLv4zo6iZ0NbjZnmD9LZkd.jpg"
+data-meta="2024 | 1h 41m | Animación,Ciencia ficción,Aventura | FHD | 7+"
+data-overview="Esta aventura épica cuenta la historia de una robot, Rozzum 7-1-3-4, Roz para abreviar, que naufraga en una isla inhabitada y debe aprender a adaptarse a los entornos rigurosos construyendo relaciones con los animales de la isla y convirtiéndose en la madre adoptiva de una cría de ganso huérfana.">
+<img src="https://image.tmdb.org/t/p/w780/sDoXpaKZmrzCSJH63zZvQQ9A7VK.jpg">
+</a>
+
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/3GBPWX4qRSI"
+target="_blank" rel="noopener noreferrer"
+data-title="Zootrópolis 2 (2025) Aventura, Animación, Comedia, Familia y Misterio"
+data-logo="https://image.tmdb.org/t/p/w780/9is5X7P17j4ZX58ZySrhRbu2PYZ.png"
+data-banner="https://image.tmdb.org/t/p/original/lgotja3xMoJZbynwHfcQcJAEMWH.jpg"
+data-meta="2025 | 1h 47m | Aventura, Animación, Comedia, Misterio | FHD | 7+"
+data-overview="Después de resolver el caso más importante en la historia de Zootrópolis, los policías novatos Judy Hopps y Nick Wilde descubren que su asociación no es tan sólida como pensaban cuando el Jefe Bogo les ordena unirse al programa de consejería "Compañeros en Crisis". Pero no pasa mucho tiempo para que su asociación se ponga a prueba al máximo, cuando la llegada de Gary, la serpiente, pone la ciudad patas arriba.">
+<img src="https://image.tmdb.org/t/p/w780/wiCZQZffdWzAjlyHnXEECEZtWSp.jpg">
+</a>
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/Xgebxp-AXL4"
+target="_blank" rel="noopener noreferrer"
+data-title="Memorias de un caracol (2024) Animación, Drama y Comedia"
+data-logo="https://image.tmdb.org/t/p/w780/s9Ofx13j8MAhy9v6ESB94SOWKE7.png"
+data-banner="https://image.tmdb.org/t/p/original/i3CAo9UMGsvlU9k3Svd63rRDeZx.jpg"
+data-meta="2024 | 1h 34m |Animación, Drama y Comedia | FHD | 16+"
+data-overview="Separada a la fuerza de su hermano gemelo cuando quedan huérfanos, una melancólica inadaptada aprende a encontrar la confianza en sí misma en medio del desorden de las desgracias y la vida cotidiana.">
+<img src="https://image.tmdb.org/t/p/w780/itb0oMYkglNqMUkXE7mrDyFtwuL.jpg">
+</a>
+
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/5IOvLjtSvuQ"
+target="_blank" rel="noopener noreferrer"
+data-title="Kung Fu Panda (2008) Acción, Animación, Comedia, Drama y Familia"
+data-logo="https://image.tmdb.org/t/p/w780/8WKDWnKfoG0IdhBikwif9XWlRrX.png"
+data-banner="https://image.tmdb.org/t/p/original/d1RHScaZc7I8j0lDke1c4AxI435.jpg"
+data-meta="2008 | 1h 35m | Acción, Animación, Comedia, Drama | FHD | 0+"
+data-overview="El protagonista es un oso panda llamado Po, el más vago de todas las criaturas del Valle de la Paz. Con poderosos enemigos acercándose, la esperanza es depositada en una antigua profecía que dice que un héroe se alzará para salvarles. Voces originales de Jack Black, Angelina Jolie, Dustin Hoffman, Lucy Liu & Jackie Chan.">
+<img src="https://image.tmdb.org/t/p/w780/zcORJ8s9zsBjvKxP0k4FASQSjpf.jpg">
+</a>
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/JBhrB3qtANk"
+target="_blank" rel="noopener noreferrer"
+data-title="Los Simpson: La película (2007) Animación, Comedia y Familia"
+data-logo="https://image.tmdb.org/t/p/w780/7ju2r6SfmRbtkb4urhLtTpUxEbN.png"
+data-banner="https://image.tmdb.org/t/p/original/8ln5VUVk7gnNGIb2VNgw8nICDVt.jpg"
+data-meta="2007 | 1h 27m | Animación, Comedia y Familia | FHD | 12+"
+data-overview="Homer debe salvar al mundo de una catástrofe que él mismo ha provocado. Todo comienza con Homer, su nueva mascota, un cerdo, y un silo lleno de excrementos que tiene una fuga, una combinación que desencadena un desastre distinto a todo lo que Springfield haya experimentado jamás. Mientras Marge está indignada por la monumental metedura de pata de su patán marido, una turba vengativa cae sobre el hogar de los Simpson...">
+<img src="https://image.tmdb.org/t/p/w780/d9wHkwF9ttnNKuOoEIStve32jEk.jpg">
+</a>
+
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/D6F4eCvXLX4"
+target="_blank" rel="noopener noreferrer"
+data-title="Polar Express (2004) Aventura, Animación, Familia y Fantasía"
+data-logo="https://image.tmdb.org/t/p/w780/vElEYlOkh84RVLh1ak73IURAb2J.png"
+data-banner="https://image.tmdb.org/t/p/original/xxH7s4o2ED9qrGxADOp627Txq7o.jpg"
+data-meta="2004 | 1h 40m | Aventura, Animación, Familia y Fantasía | FHD | 0+"
+data-overview="Esta es la historia de un jovencito en la víspera de Navidad quien aborda un poderoso y mágico tren que se dirige al hogar de Papá Noel, en el Polo Norte. Lo que se desarrolla es una aventura que sigue al dubitativo niño, quien toma un tren extraordinario al Polo Norte; durante este viaje, se embarca en una experiencia de autodescubrimiento que le muestra que las maravillas de la vida nunca se desvanecen para quienes creen.">
+<img src="https://image.tmdb.org/t/p/w780/ja6QGEUkP8t3wjjoHYvpRStomlT.jpg">
+</a>
+
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/2AcAa78jqJQ"
+target="_blank" rel="noopener noreferrer"
+data-title="Se armó el Belén (2017) Animación, Comedia, Aventura, Familia y Fantasía"
+data-logo="https://image.tmdb.org/t/p/w780/rCNQ3oxXSz6l9M9cOlvX0pgVzv9.png"
+data-banner="https://image.tmdb.org/t/p/original/orpnKsu7t1CLDNYgzevgsz67xRq.jpg"
+data-meta="2017 | 2h 7m | Animación, Comedia, Aventura, Fantasía | HD | 0+"
+data-overview="Bo es un burrito pequeño, pero valiente, que anhela una vida más allá de su rutina diaria en el molino del pueblo. Un día reúne el coraje necesario para cumplir la aventura de sus sueños. En su viaje conocerá a Ruth, una adorable oveja que ha perdido su rebaño, y a Dave, una paloma con grandes aspiraciones. Durante su camino, en el que siguen una Estrella muy especial, encontrarán además a tres camellos y a otros excéntricos animales. Todos ellos se convertirán en los héroes no reconocidos de la primera Navidad.">
+<img src="https://image.tmdb.org/t/p/w780/b39VGy2mOTRHbW8iV1fQQwb73wy.jpg">
+</a>
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/UrIIjKNeyME"
+target="_blank" rel="noopener noreferrer"
+data-title="El origen de los guardianes (2012) Animación, Familia, Fantasía, Acción y Aventura"
+data-logo="https://image.tmdb.org/t/p/w780/7MzYKrGYTuglmtOCKhooNf7zNyx.png"
+data-banner="https://image.tmdb.org/t/p/original/46IGtYNjpIvQYRIQlb2X493Wh8x.jpg"
+data-meta="2012 | 1h 37m | Animación, Fantasía, Acción y Aventura | FHD | 0+"
+data-overview="Una aventura épica y mágica que cuenta la historia de Santa Claus, el Conejo de Pascua, el Hada de los Dientes y Jack Escarcha; personajes legendarios con desconocidas habilidades extraordinarias. Cuando un espíritu maligno, conocido como Sombra, decide inundar de miedo los corazones de los niños, los Guardianes inmortales unen sus fuerzas para proteger los deseos, las creencias y la imaginación de los niños.">
+<img src="https://image.tmdb.org/t/p/w780/deTVL9lgx1yegoN4JXSdRcrVr6m.jpg">
+</a>
+
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/YlxiK8Y1hUw"
+target="_blank" rel="noopener noreferrer"
+data-title="Ha llegado la nieve a Fraggle Rock (2025) Familia, Comedia y Música"
+data-logo="https://image.tmdb.org/t/p/w780/zArikRNqRO8gHflvXIVbKQOoAMA.png"
+data-banner="https://image.tmdb.org/t/p/original/h5hCdU9KvcCbBihSNfn3vtML7tV.jpg"
+data-meta="2025 | 0h 34m | Familia, Comedia y Música | 4K | 0+"
+data-overview="Cuando las fiestas se llenan de aventuras y retos inesperados, los Fraggle aprenden a valorar cada día por ser único y especial, como un copo de nieve.">
+<img src="https://image.tmdb.org/t/p/w780/jBUDhU31nGEkEq8W3IIbrv6ct17.jpg">
+</a>
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/K759kpleB00"
+target="_blank" rel="noopener noreferrer"
+data-title="Zootrópolis (2016) Animación, Aventura, Familia y Comedia
+"
+data-logo="https://image.tmdb.org/t/p/w780/hr603WG04ZbrdTyluOiWjRtd8Nk.png"
+data-banner="https://image.tmdb.org/t/p/original/9tOkjBEiiGcaClgJFtwocStZvIT.jpg"
+data-meta="2016 | 1h 48m | Animación, Aventura, Familia y Comedia | 4K | 0+"
+data-overview="La moderna metrópoli mamífera de Zootrópolis es una ciudad absolutamente única. Está compuesta de barrios con diferentes hábitats como la lujosa Plaza Sahara, el Distrito Selva Tropical y el gélido Distrito Tundra. Es un crisol donde los animales de cada entorno conviven, un lugar donde no importa lo que seas. De hecho puedes ser cualquier cosa, desde un elefante enorme hasta la musaraña más diminuta. Pero cuando llega la optimista agente Judy Hopps, descubre que ser la primera conejita de un cuerpo policial compuesto de animales duros y enormes no es nada fácil. Pero está decidida a demostrar su valía y se mete de cabeza en un caso, a pesar de que eso significa trabajar con Nick Wilde, un zorro parlanchín y estafador, para resolver el misterio.">
+<img src="https://image.tmdb.org/t/p/w780/4zIlT48TgNLuJpUtFOkFITHoCQE.jpg">
+</a>
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/tKOWV4wON_o"
+target="_blank" rel="noopener noreferrer"
+data-title="La casa de muñecas de Gabby: La película (2025) Familia, Comedia, Aventura y Animación"
+data-logo="https://image.tmdb.org/t/p/w780/v7QluIXHC5jj47XBD8WXCoX1ZXg.png"
+data-banner="https://image.tmdb.org/t/p/original/4nBxazVPqf88v4omVqGJSUoX0lE.jpg"
+data-meta="2025 | 1h 38m | Familia, Comedia, Aventura y Animación | 4K | 0+"
+data-overview="Gabby decide irse de viaje con su abuela Gigi rumbo a la maravillosa ciudad de Cat Francisco. Pero cuando la casa de muñecas de Gabby, su posesión más preciada, acaba en manos de Vera, una excéntrica dama obsesionada con los gatos, Gabby emprende una aventura por el mundo real para volver a reunir a sus mininos y salvar la casa de muñecas antes de que sea demasiado tarde.">
+<img src="https://image.tmdb.org/t/p/w780/ruAIbycacQIIXeTf4xh1r1NjvJa.jpg">
+</a>
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/nCfNc7skwWU"
+target="_blank" rel="noopener noreferrer"
+data-title="El diario de Greg: ¡Esto es el colmo! (2025) Animación, Familia y Comedia"
+data-logo="https://image.tmdb.org/t/p/w780/r3hks5Zvksjf2ez6LmCwFT9y3pI.png"
+data-banner="https://image.tmdb.org/t/p/original/v8tpkxm7AhLu69eaZKJLsNaSL5.jpg"
+data-meta="2025 | 1h 29m | Animación, Familia y Comedia | 4K | 7+"
+data-overview="Cuando la despreocupación de Greg choca con las desorbitadas expectativas de su padre, este le presiona para que cambie de actitud. Tras rozar varias veces el desastre con hilarantes resultados, Greg recibe un ultimátum de su padre que podría hacerle dejar atrás sus días de "pringao" para siempre.">
+<img src="https://image.tmdb.org/t/p/w780/xg6hPJGl130XkJgwWpBagMHojWz.jpg">
+</a>
+
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/lOcoU32t3Hs"
+target="_blank" rel="noopener noreferrer"
+data-title="Fantástico Sr. Fox (2009) Aventura, Animación, Comedia y Familia"
+data-logo="https://image.tmdb.org/t/p/w780/8DqsLbYeD98VRsRNqercXCoT2qJ.png"
+data-banner="https://image.tmdb.org/t/p/original/dSJgkCeMGFGMVeXYLOmruYvCu5w.jpg"
+data-meta="2009 | 1h 27m | Aventura, Animación, Comedia y Familia | 4K | 0+"
+data-overview="Un astuto zorro llamado Fox (voz original de George Clooney) parece llevar una vida idílica con su esposa (Meryl Streep) y con su hijo Ash (Jason Schwartzman). Pero, por las noches, el señor Fox se dedica a robar gallinas, patos y pavos en las granjas vecinas. Los granjeros deciden acabar con la situación cazando a Mr. Fox. Basada en el famoso libro para niños de Roald Dahl.">
+<img src="https://image.tmdb.org/t/p/w780/2B2IcoSMpOa64Yw8DDtGzXdS4vl.jpg">
+</a>
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/GAg556eI9iY"
+target="_blank" rel="noopener noreferrer"
+data-title="La novia cadáver (2005) Romance, Fantasía y Animación"
+data-logo="https://image.tmdb.org/t/p/w780/ziA8XAfgm07oHkwuMxA71tyP4yl.png"
+data-banner="https://image.tmdb.org/t/p/original/3u3AGwJUSI3RvLBbfuetWTsu7kn.jpg"
+data-meta="2005 | 1h 17m | Romance, Fantasía y Animación | 4k | 7+"
+data-overview="Ambientada en un pueblecito europeo en el siglo XIX, esta película de animación fotograma a fotograma cuenta la historia de Victor, un joven que es llevado de repente al infierno, donde se casa con una misteriosa Novia Cadáver, mientras que su verdadera novia, Victoria espera en el mundo de los vivos. A pesar de que la tierra de los muertos resulta ser más colorista que su estricta educación victoriana, Victor aprende que no hay nada en este mundo, ni en el siguiente, que pueda separarle de su único y verdadero amor.">
+<img src="https://image.tmdb.org/t/p/w780/jmToMxK9DLcDxB8hLQwCBH49h7A.jpg">
+</a>
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/Bc7816lbz48"
+target="_blank" rel="noopener noreferrer"
+data-title="Kung Fu Panda 2 (2011) Animación, Familia, Comedia y Acción"
+data-logo="https://image.tmdb.org/t/p/w780/n52KkzjoXr0WriwE2XTkD36gLLI.png"
+data-banner="https://image.tmdb.org/t/p/original/reHkSQwiYKK4SabnGDY1FWKie82.jpg"
+data-meta="2011 | 1h 30m | Animación, Familia, Comedia y Acción | 4K | 0+"
+data-overview="Po está ahora viviendo su sueño como el Guerrero del Dragón, protegiendo el Valle de la Paz junto a sus amigos y sus compañeros maestros del kung fu. Los Cinco Furiosos. Pero su nueva e impresionante vida se encuentra amenazada por la aparición de un villano formidable, que planea usar un arma secreta imparable para conquistar China y destruir el kung fu. Po debe volver la vista a su pasado para descubrir los secretos de su misterioso origen; solo entonces podrá adquirir la fuerza que necesita para vencer.">
+<img src="https://image.tmdb.org/t/p/w780/aNji9U9SPTecmoqGippQUBEyouy.jpg">
+</a>
+
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/ZbVyZWMWfdc"
+target="_blank" rel="noopener noreferrer"
+data-title="Los tipos malos 2 (2025) Familia, Comedia, Crimen, Aventura y Animación"
+data-logo="https://image.tmdb.org/t/p/w780/q6gqbudQZEHsYUSxTr5Hhe7hNVK.png"
+data-banner="https://image.tmdb.org/t/p/original/lB96EMr5A7Og81UhyldJvvy35r.jpg"
+data-meta="2025 | 1h 44m | Comedia, Crimen, Aventura y Animmación | 4k | 7+"
+data-overview="Un genial equipo de animales que no respetan la ley, los ahora muy reformados Tipos Malos, se esfuerzan (mucho, muchísimo) en ser buenos, pero se ven envueltos involuntariamente en un golpe de envergadura mundial planeado por un inesperado grupo de criminales: las Tipas Malas.">
+<img src="https://image.tmdb.org/t/p/w780/mZmnKDhIS2yNmtfzde5vtdCYzBF.jpg">
+</a>
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/noXJ8HHlACA"
+target="_blank" rel="noopener noreferrer"
+data-title="Policán (2025) Familia, Comedia, Aventura, Animación y Acción"
+data-logo="https://image.tmdb.org/t/p/w780/3n0icbU2hIc5HsscxxrGiYX979j.png"
+data-banner="https://image.tmdb.org/t/p/original/iXU87IdtNsYt7n6OigPJBDdbFf1.jpg"
+data-meta="2025 | 1h 29m | Comedia, Aventura, Animación y Acción | HD | 7+"
+data-overview="Un perro y un agente de policía resultan heridos juntos en el trabajo. Una operación quirúrgica que les salva la vida cambia el curso de la historia cuando nace Policán. Mitad perro, mitad hombre, Policán ha jurado proteger y servir -siempre que no le distraigan las ardillas- mientras persigue tenazmente a su archienemigo: el supervillano felino Petey el Gato. Pero la rivalidad entre Policán y Petey se ve alterada por la llegada de un adorable gatito clon de Petey, Lil Petey, que cambia las reglas del juego para ambos.">
+<img src="https://image.tmdb.org/t/p/w780/fYrX4Xn8hIaIBx5p1HRFJ3uG7uH.jpg">
+</a>
+
+<a class="movie" tabindex="0"
+href="https://youtu.be/dwlnImhVif8"
+target="_blank" rel="noopener noreferrer"
+data-title="Elio (2025) Animación, Aventura, Ciencia ficción y Familia"
+data-logo="https://image.tmdb.org/t/p/w780/uvsj8cQrqVbEUMTxIZXvQ4ezKFi.png"
+data-banner="https://image.tmdb.org/t/p/original/ukPu5xYOBAnh5H46uK4aQOirW2b.jpg"
+data-meta="2025 | 1h 38m | Aventura, Ciencia ficción y Familia | 4K | 7+"
+data-overview="Cuenta la historia de Elio, un niño de 11 años, que lucha por encajar hasta que de repente es transportado por extraterrestres y es elegido para ser el embajador galáctico de la Tierra.">
+<img src="https://image.tmdb.org/t/p/w780/fqF7z5A8kFIrNtSdpEfjE539fna.jpg">
+</a>
+</div>
+
+
+
+
+
+
+
+
+
+<!--  FINAL FILA -->
+
+
+
+</div>
+
+<script>
+const movies = document.querySelectorAll('.movie');
+const rows = document.querySelectorAll('.movie-row');
+
+const header = document.getElementById('header');
+const info = document.getElementById('info');
+const title = document.getElementById('title');
+const meta = document.getElementById('meta');
+const overview = document.getElementById('overview');
+
+const searchInput = document.getElementById('search');
+const searchButton = document.getElementById('search-button');
+
+let activeRow = 0;
+
+/* INICIO */
+rows.forEach((r,i)=>{
+  if(i!==0) r.classList.add('hidden');
+});
+
+/* MOSTRAR FILA */
+function showRow(i){
+  rows.forEach((r,index)=>{
+    r.classList.toggle('hidden', index!==i);
+  });
+
+  activeRow = i;
+}
+
+/* SELECCIONAR PELÍCULA */
+function selectMovie(movie){
+
+  movies.forEach(m=>m.classList.remove('selected'));
+  movie.classList.add('selected');
+
+  header.style.backgroundImage = `url(${movie.dataset.banner})`;
+
+  if(movie.dataset.logo){
+    title.innerHTML = '';
+const img = document.createElement('img');
+img.src = movie.dataset.logo;
+title.appendChild(img);
+
+  } else {
+    title.textContent = movie.dataset.title;
+  }
+
+  meta.textContent = movie.dataset.meta;
+  overview.textContent = movie.dataset.overview;
+
+  info.classList.add('visible');
+}  
+
+/* SCROLL AUTOMÁTICO */
+function scrollToMovie(movie){
+
+  const headerHeight = 320;
+
+  const movieRect = movie.getBoundingClientRect();
+
+  const movieTop = movieRect.top + window.scrollY;
+
+ window.scrollTo(0, movieTop - headerHeight - 20);
+}
+
+/* EVENTOS */
+rows.forEach((row,rowIndex)=>{
+
+  row.querySelectorAll('.movie').forEach(movie=>{
+
+    movie.addEventListener('focus', ()=>{
+
+      showRow(rowIndex);
+
+      selectMovie(movie);
+
+      scrollToMovie(movie);
+
+    });
+
+    movie.addEventListener('mouseenter', ()=>{
+      showRow(rowIndex);
+
+      selectMovie(movie);
+
+      scrollToMovie(movie);
+
+    });
+
+  });
+
+});
+
+/* FLECHAS */
+document.addEventListener('keydown', e=>{
+
+  if(e.key==='ArrowDown' && activeRow<rows.length-1){
+
+    showRow(activeRow+1);
+
+    const nextMovie = rows[activeRow].querySelector('.movie');
+
+    if(nextMovie){
+      nextMovie.focus();
+    }
+
+  }
+
+  if(e.key==='ArrowUp' && activeRow>0){
+
+    showRow(activeRow-1);
+
+    const prevMovie = rows[activeRow].querySelector('.movie');
+
+    if(prevMovie){
+      prevMovie.focus();
+    }
+
+  }
+
+});
+
+/* BUSCADOR */
+searchButton.addEventListener('click', ()=>{
+
+  searchInput.classList.add('active');
+
+  searchInput.focus();
+
+});
+
+searchInput.addEventListener('blur', ()=>{
+
+  if(!searchInput.value){
+
+    searchInput.classList.remove('active');
+
+    rows.forEach((row,i)=>{
+
+      row.style.display='';
+
+      row.classList.toggle('hidden', i!==0);
+
+      row.querySelectorAll('.movie').forEach(m=>{
+        m.style.display='';
+      });
+
+    });
+
+    activeRow=0;
+
+    rows[0].querySelector('.movie')?.focus();
+
+  }
+
+});
+
+searchInput.addEventListener('input', ()=>{
+
+  const query = searchInput.value.toLowerCase().trim();
+
+  let firstMatch=null;
+
+  rows.forEach((row,rowIndex)=>{
+
+    let visible=false;
+
+    row.querySelectorAll('.movie').forEach(movie=>{
+
+      const title = movie.dataset.title.toLowerCase();
+
+      const match = title.includes(query);
+
+      movie.style.display = match ? 'block' : 'none';
+
+      if(match){
+
+        visible=true;
+
+        if(!firstMatch){
+
+          firstMatch=movie;
+
+          showRow(rowIndex);
+
+        }
+
+      }
+
+    });
+
+    row.style.display = visible ? 'grid' : 'none';
+
+  });
+
+  if(!query){
+
+    rows.forEach((row,i)=>{
+
+      row.style.display='';
+
+      row.querySelectorAll('.movie').forEach(m=>{
+        m.style.display='';
+      });
+
+    });
+
+    showRow(0);
+
+  }
+
+});
+
+/* PRIMERA PELÍCULA */
+const firstMovie = rows[0].querySelector('.movie');
+
+if(firstMovie){
+
+  firstMovie.focus();
+
+  selectMovie(firstMovie);
+
+  scrollToMovie(firstMovie);
+
+}
+</script>
+
+</body>
+  </html>
