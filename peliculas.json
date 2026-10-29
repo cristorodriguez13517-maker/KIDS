@@ -1634,27 +1634,7 @@
     "last_tmdb_attempt": "2026-10-28T12:55:31+00:00",
     "next_retry_at": "2026-10-29T00:46:06+00:00"
   },
-  {
-    "youtube_id": "T6vL-r19HY4",
-    "youtube_title": "El rey león (The Lion King) (2019)",
-    "description": "4K 2160p",
-    "published_at": "2026-10-25T11:00:42Z",
-    "matcher_version": 3,
-    "title": "El pequeño rey leon",
-    "tmdb_id": 479024,
-    "poster": null,
-    "logo": null,
-    "backdrop": null,
-    "overview": "Es una película animada de italia del 2006 dirigida por Mario Cambi.",
-    "release_date": "2006-11-12",
-    "runtime": 60,
-    "genres": [],
-    "quality": "4K",
-    "age_rating": "",
-    "match_status": "encontrada",
-    "youtube_url": "https://www.youtube.com/watch?v=T6vL-r19HY4",
-    "last_tmdb_attempt": "2026-10-28T12:46:07+00:00"
-  },
+ 
   {
     "youtube_id": "DDbE-mXyTqc",
     "youtube_title": "Mufasa: El rey león (Mufasa: The Lion King) (2024)",
