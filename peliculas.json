@@ -1634,7 +1634,32 @@
     "last_tmdb_attempt": "2026-10-28T12:55:31+00:00",
     "next_retry_at": "2026-10-29T00:46:06+00:00"
   },
- 
+  {
+    "youtube_id": "T6vL-r19HY4",
+    "youtube_title": "El rey león (The Lion King) (2019)",
+    "description": "4K 2160p",
+    "published_at": "2026-10-25T11:00:42Z",
+    "matcher_version": 3,
+    "title": "El rey león",
+    "tmdb_id": 420818,
+    "poster": "https://image.tmdb.org/t/p/w780/eGfq90BF8QGCMpncF2ag0lGTgKk.jpg",
+    "logo": "https://image.tmdb.org/t/p/w780/clU0s0tN0oISabdWFfQiX8aopYb.png",
+    "backdrop": "https://image.tmdb.org/t/p/original/1TUg5pO1VZ4B0Q1amk3OlXvlpXV.jpg",
+    "overview": "Simba es el hijo del rey de los leones, Mufasa, y heredero de todo el reino. Pero cuando su padre es brutalmente asesinado por su tío Scar, decidirá huir, dejando vía libre para que su tío tome el puesto de su padre como líder de la manada. En su camino, Simba se encuentra con el suricato  Timón y el jabalí Pumba, que le enseñarán a vivir la vida sin preocupaciones. Pero el joven león se verá obligado a decidir entre su vida libre de problemas o su destino como rey .",
+    "release_date": "2019-07-12",
+    "runtime": 118,
+    "genres": [
+      "Aventura",
+      "Drama",
+      "Familia",
+      "Animación"
+    ],
+    "quality": "4K",
+    "age_rating": "A",
+    "match_status": "encontrada",
+    "youtube_url": "https://www.youtube.com/watch?v=T6vL-r19HY4",
+    "last_tmdb_attempt": "2026-10-29T12:40:52+00:00"
+  },
   {
     "youtube_id": "DDbE-mXyTqc",
     "youtube_title": "Mufasa: El rey león (Mufasa: The Lion King) (2024)",
