@@ -1063,7 +1063,27 @@
     "youtube_url": "https://www.youtube.com/watch?v=f4GkGkEzw8U",
     "last_tmdb_attempt": "2026-10-28T12:45:30+00:00"
   },
-  
+  {
+    "youtube_id": "8f5g8DuUdcg",
+    "youtube_title": "Katak, la pequeña ballena blanca (Katak, le brave béluga) (2023)",
+    "description": "HD 1080p",
+    "published_at": "2026-10-25T10:45:49Z",
+    "matcher_version": 3,
+    "title": "Katak",
+    "tmdb_id": 947132,
+    "poster": "https://image.tmdb.org/t/p/w780/uQKwoPrZ8cB1lwZ8nA6QFhQE0Q9.jpg",
+    "logo": null,
+    "backdrop": null,
+    "overview": "",
+    "release_date": "",
+    "runtime": 6,
+    "genres": [],
+    "quality": "FHD",
+    "age_rating": "",
+    "match_status": "encontrada",
+    "youtube_url": "https://www.youtube.com/watch?v=8f5g8DuUdcg",
+    "last_tmdb_attempt": "2026-10-29T12:44:59+00:00"
+  },
   {
     "youtube_id": "rNMSUjAMn0U",
     "youtube_title": "Lilo y Stitch (2025)",
