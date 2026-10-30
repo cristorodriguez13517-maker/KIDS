@@ -3070,7 +3070,32 @@
     "last_tmdb_attempt": "2026-10-30T23:22:01+00:00",
     "next_retry_at": "2026-10-31T02:25:29+00:00"
   },
-  
+  {
+    "youtube_id": "iUaCzbhJjX0",
+    "youtube_title": "Red (Turning Red) (2022)",
+    "description": "Full HD 1080p",
+    "published_at": "2026-10-25T12:06:16Z",
+    "matcher_version": 4,
+    "title": "Red",
+    "tmdb_id": 508947,
+    "poster": "https://image.tmdb.org/t/p/w780/djM4COTksd5YRIdd9uEl8eA3iaa.jpg",
+    "logo": "https://image.tmdb.org/t/p/w780/w0xaUJK54cuPxm6hq5lsGCwqtXo.png",
+    "backdrop": "https://image.tmdb.org/t/p/original/fOy2Jurz9k6RnJnMUMRDAgBwru2.jpg",
+    "overview": "Mei Lee, una niña de 13 años un poco rara pero segura de sí misma, se debate entre ser la hija obediente que su madre quiere que sea y el caos propio de la adolescencia. Ming, su protectora y ligeramente exigente madre, no se separa nunca de ella lo que es una situación poco deseable para una adolescente. Y por si los cambios en su vida y en su cuerpo no fueran suficientes, cada vez que se emociona demasiado (lo que le ocurre prácticamente todo el tiempo), se convierte en un panda rojo gigante.",
+    "release_date": "2022-03-10",
+    "runtime": 100,
+    "genres": [
+      "Animación",
+      "Familia",
+      "Comedia",
+      "Fantasía"
+    ],
+    "quality": "FHD",
+    "age_rating": "7+",
+    "match_status": "encontrada",
+    "youtube_url": "https://www.youtube.com/watch?v=iUaCzbhJjX0",
+    "last_tmdb_attempt": "2026-10-30T23:28:03+00:00"
+  },
   {
     "youtube_id": "LhIJESK-QiU",
     "youtube_title": "Los tipos malos (The Bad Guys)(2022)",
@@ -3153,7 +3178,33 @@
     "youtube_url": "https://www.youtube.com/watch?v=BOjiObddgAs",
     "last_tmdb_attempt": "2026-10-28T12:47:13+00:00"
   },
- 
+  {
+    "youtube_id": "m06-3hzVxEA",
+    "youtube_title": "El Gato con Botas (Puss in Boots) (2011)",
+    "description": "Full HD 1080p",
+    "published_at": "2026-10-25T12:06:16Z",
+    "matcher_version": 4,
+    "title": "El Gato con Botas",
+    "tmdb_id": 417859,
+    "poster": "https://image.tmdb.org/t/p/w780/1VmrC82zY4U33l9UHlZTWDB1asN.jpg",
+    "logo": "https://image.tmdb.org/t/p/w780/5YifuppwdnXqj0a86CJVRgzOqpQ.png",
+    "backdrop": "https://image.tmdb.org/t/p/original/c5MCkebYhFuhmi32x760HfcvLIO.jpg",
+    "overview": "Mucho antes de que conociera a Shrek, el conocido espadachín, amante y fuera de la ley Gato con Botas se convierte en un héroe al emprender una aventura junto a la dura y espabilada Kitty Zarpassuaves y el astuto Humpty Dumpty para salvar a su pueblo. Complicándoles las cosas por el camino están los infames forajidos Jack y Jill, que harán cualquier cosa para que Gato y su banda no lo consigan.",
+    "release_date": "2011-10-27",
+    "runtime": 90,
+    "genres": [
+      "Acción",
+      "Aventura",
+      "Animación",
+      "Comedia",
+      "Familia"
+    ],
+    "quality": "FHD",
+    "age_rating": "Ai",
+    "match_status": "encontrada",
+    "youtube_url": "https://www.youtube.com/watch?v=m06-3hzVxEA",
+    "last_tmdb_attempt": "2026-10-30T23:28:04+00:00"
+  },
   {
     "youtube_id": "PMqWVHSiHvo",
     "youtube_title": "Un padre en apuros (Jingle All the Way) (1996)",
@@ -3180,7 +3231,32 @@
     "last_tmdb_attempt": "2026-10-30T23:22:04+00:00",
     "next_retry_at": "2026-10-31T02:25:30+00:00"
   },
-  
+  {
+    "youtube_id": "Z7CnR10nsWs",
+    "youtube_title": "El príncipe de Egipto (The Prince of Egypt) (1998)",
+    "description": "Full HD 1080p",
+    "published_at": "2026-10-25T12:06:16Z",
+    "matcher_version": 4,
+    "title": "El príncipe de Egipto",
+    "tmdb_id": 9837,
+    "poster": "https://image.tmdb.org/t/p/w780/dyHNyqc9UBhfLZpFM8GTQ9z8AvV.jpg",
+    "logo": "https://image.tmdb.org/t/p/w780/f8gfYJDZDDgJ54Kq9IhttjPgx08.png",
+    "backdrop": "https://image.tmdb.org/t/p/original/565DYYXgdRYMiETLi2EDx4p7s92.jpg",
+    "overview": "En el antiguo Egipto, hace miles de años, el faraón Seti ordena la muerte de todos los recién nacidos judíos. Una madre, desesperada, coloca a su hijo en una cesta y la deposita en el Nilo. Las aguas la conducen río abajo hasta la orilla donde la hallará la reina. El niño era Moisés y fue educado como hermano de Ramsés, el heredero del trono. Sin embargo, cuando, años después, se descubra el origen hebreo de Moisés, los hermanos se distanciarán.",
+    "release_date": "1998-12-16",
+    "runtime": 99,
+    "genres": [
+      "Aventura",
+      "Animación",
+      "Drama",
+      "Familia"
+    ],
+    "quality": "FHD",
+    "age_rating": "7i",
+    "match_status": "encontrada",
+    "youtube_url": "https://www.youtube.com/watch?v=Z7CnR10nsWs",
+    "last_tmdb_attempt": "2026-10-30T23:28:06+00:00"
+  },
   {
     "youtube_id": "8nRkcisD6Nw",
     "youtube_title": "Mundo extraño (Strange World) (2022)",
