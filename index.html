@@ -549,6 +549,15 @@ function getAgeRating(movie) {
         '';
 }
 
+function abrirSmartTube(url){
+    if(!url)return;
+    try{const u=new URL(url,location.href);if(!/^https?:$/.test(u.protocol))throw new Error('URL no válida');
+      const fallback=encodeURIComponent(u.href);
+      const intent='intent://'+u.host+u.pathname+u.search+'#Intent;scheme='+u.protocol.slice(0,-1)+';package=com.liskovsoft.smartyoutubetv2.tv;S.browser_fallback_url='+fallback+';end';
+      if(/Android/i.test(navigator.userAgent))location.href=intent;else window.open(u.href,'_blank','noopener');
+    }catch(err){console.error('No se pudo abrir SmartTube',err);}
+}
+
 /* CREAR CARÁTULAS */
 
 function renderMovies() {
@@ -583,6 +592,7 @@ function renderMovies() {
         card.href = youtubeSource;
         card.target = '_blank';
         card.rel = 'noopener noreferrer';
+        card.addEventListener('click', event => { event.preventDefault(); abrirSmartTube(youtubeSource); });
 
         card.dataset.title = getTitle(movie);
         card.dataset.logo = movie.logo_manual || movie.logo ||
